@@ -3,5 +3,6 @@
    <person>
       <name>Daniel</name>
       <surname>Pecos</surname>
+      <address><![CDATA[Long text]]></address>
    </person>
 </addressBook>

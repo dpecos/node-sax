@@ -31,6 +31,12 @@ createStream = () ->
   stream.on 'text', (text) ->
     currentNode()['$text'] = text if currentNode()
 
+  stream.on 'cdata', (text) ->
+    node = currentNode()
+    if node
+      currentText = node['$text'] || ""
+      node['$text'] = currentText + text
+
   stream.on 'closetag', () ->
     #console.log arguments
     if currentNode()
