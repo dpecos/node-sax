@@ -24,7 +24,17 @@ createStream = () ->
         $attributes: tag.attributes
         $tagName: tag.name
 
-      current[tag.name] = next_node if current
+      if current
+        if current[tag.name]
+          if not current['$children']
+            current['$children'] = [ current[tag.name] ]
+            delete current[tag.name]
+          current['$children'].push next_node
+        else if current['$children']
+          current['$children'].push next_node
+        else
+          current[tag.name] = next_node
+      
 
       nodeStack.push next_node
 
