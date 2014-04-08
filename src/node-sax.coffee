@@ -26,12 +26,9 @@ createStream = () ->
 
       if current
         if current[tag.name]
-          if not current['$children']
-            current['$children'] = [ current[tag.name] ]
-            delete current[tag.name]
-          current['$children'].push next_node
-        else if current['$children']
-          current['$children'].push next_node
+          if not (current[tag.name] instanceof Array)
+            current[tag.name] = [ current[tag.name] ]
+          current[tag.name].push next_node
         else
           current[tag.name] = next_node
       
