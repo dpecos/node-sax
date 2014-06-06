@@ -11,11 +11,7 @@ createStream = () ->
 
   stream.nodeReadyListeners = {}
 
-  stream.on 'error', (err) ->
-    console.error err
-
   stream.on 'opentag', (tag) ->
-    #console.log arguments
     current = currentNode()
 
     if current or stream.nodeReadyListeners[tag.name]
@@ -45,7 +41,6 @@ createStream = () ->
       node['$text'] = currentText + text
 
   stream.on 'closetag', () ->
-    #console.log arguments
     if currentNode()
       current = nodeStack.pop()
       cb = stream.nodeReadyListeners[current.$tagName]
